@@ -1,0 +1,120 @@
+#background-effects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#blob {
+  background-color: white;
+  height: 50vmin;
+  aspect-ratio: 8/9;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  rotate: -22deg;
+  border-radius: 50%;
+  background: linear-gradient(
+    to right, blue, white);
+  animation: rotate 20s infinite linear,
+             scale 13s infinite linear,
+             mutate 7s infinite ease-in-out;
+  z-index: -2;
+  filter: blur(220px);
+}
+
+.polaroid-group {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 56vmin;
+  height: 56vmin;
+  z-index: 3;
+}
+
+
+figure {
+  position: absolute;
+  background: rgb(230, 245, 225);
+  width: 40vmin;
+  height: 40vmin; 
+  color: rgb(0, 0, 0);
+  overflow: hidden;
+  padding: 20px 20px 75px 20px;
+  transition: transform 650ms cubic-bezier(0,.83,.69,.97);
+  text-align: center;
+  font-family: "MV Boli", "Brush Script MT", cursive;
+  font-size: 26px;
+  box-shadow: -6px 13px 16px rgba(0 0 20 / 0.7);
+}
+
+figure > a {
+  color: black;
+}
+
+figure > a > img {
+  aspect-ratio: 1/1;
+  width: 100%;
+  object-fit: cover;
+}
+
+figure:nth-child(1) {
+  transform: translate(-14%, 2%) rotate(-11deg);
+}
+
+figure:nth-child(2) {
+  transform: translateX(0%) rotate(-2deg);
+}
+
+figure:nth-child(3) {
+  transform: translateX(14%) rotate(5deg);
+}
+
+.polaroid-group:hover > figure:nth-child(1) {
+  transform: translate(-70%, 6%) rotate(-37deg);
+}
+
+.polaroid-group:hover > figure:nth-child(2) {
+  transform: translate(10%, 0%) rotate(0deg);
+}
+
+.polaroid-group:hover > figure:nth-child(3) {
+  transform: translate(90%, 4%) rotate(24deg);
+}
+
+figure::after {
+  pointer-events: none;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+  content: "";
+  display: inline-block;
+  background: radial-gradient(
+    450px circle at var(--mouse-x) var(--mouse-y), 
+    rgba(229, 231, 255, 0.3),
+    transparent 40%
+  );
+}
+
+@keyframes rotate {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+@keyframes scale {
+  from, to { scale: 1 1; }
+  50% { scale: 1 1.5; }
+}
+
+@keyframes mutate {
+  0%, 100% { aspect-ratio: 8/9; }
+  50% { aspect-ratio: 9/8; }
+}

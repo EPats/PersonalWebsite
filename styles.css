@@ -1,0 +1,104 @@
+:root {
+  --bg: rgb(0, 4, 20);
+  --text-color: #fff;
+  --header-bg: rgba(0, 0, 20, 0.5);
+  --footer-bg: rgba(0, 0, 20, 0.5);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+}
+
+body {
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+}
+
+#content-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+header, footer {
+  position: relative;
+  z-index: 10;
+  background-color: var(--header-bg);
+  /* backdrop-filter: blur(10px); */
+}
+
+header {
+  padding: 1rem;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.header-logo {
+  margin-right: 0.5rem;
+  object-fit: cover;
+}
+
+header h1 {
+  margin: 0;
+}
+
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 1rem;
+}
+
+nav ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+main {
+
+  flex-grow: 1;
+  position: relative;
+}
+
+footer {
+  padding: 1rem;
+  text-align: center;
+}
+
+.social-icons {
+    margin-top: 0.5rem;
+}
+
+.social-icons::before {
+    width: 120%;
+    color: red;
+}
+
+.social-icons a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#linkedin-icon:hover {
+    color: #0a66c2; 
+}
+
+#youtube-icon:hover {
+  color: #ff0000; 
+}
