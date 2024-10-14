@@ -34,19 +34,21 @@ header, footer {
 
 header {
   padding: 1rem;
-}
-
-.header-content {
   display: flex;
+  flex-direction: row;
   align-items: center;
   margin-bottom: 1rem;
 }
 
+header #blank{
+  width: 50px;
+}
+
+
 #header-logo {
   margin-right: 0.5rem;
-  /* height: 10%; */
-  /* width: 100%; */
-  /* object-fit: cover; */
+  height: auto;
+  width: 50px;
   fill: white;
   stroke: white;
   
@@ -106,4 +108,12 @@ footer {
 
 #youtube-icon:hover {
   color: #ff0000; 
+}
+
+#email-icon:hover {
+  color: #ff6f00; 
+}
+
+#github-icon:hover {
+color: #5c3893; 
 }
