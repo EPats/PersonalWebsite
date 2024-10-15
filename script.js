@@ -1,4 +1,4 @@
-const blob = document.getElementById("blob");
+const blob = document.getElementById("iblob");
 
 window.onmousemove = (e) => {
   

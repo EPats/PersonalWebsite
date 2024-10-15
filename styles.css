@@ -35,38 +35,55 @@ header, footer {
 header {
   padding: 1rem;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
 
-header #blank{
-  width: 50px;
-}
-
-
 #header-logo {
-  margin-right: 0.5rem;
   height: auto;
   width: 50px;
-  fill: white;
+  fill: none;
+  stroke: none;
+
+}
+
+#header-logo path {
   stroke: white;
-  
+  stroke-width: 2;
+  stroke-dasharray: 4500;
+  stroke-dashoffset: 4500;
+  animation: 
+      draw 3s linear forwards,
+      fill 0.5s linear 1s forwards;
 }
-
-header h1 {
-  margin: 0;
+@keyframes draw {
+  to {
+      stroke-dashoffset: 0;
+  }
 }
-
+@keyframes fill {
+  from {
+      fill: transparent;
+  }
+  to {
+      fill: white;
+  }
+}
 
 nav ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
+  display: flex;
 }
 
 nav ul li {
-  display: inline;
   margin-right: 1rem;
+}
+
+nav ul li:first-child {
+  margin-left: 0; 
 }
 
 nav ul li a {
@@ -111,7 +128,7 @@ footer {
 }
 
 #email-icon:hover {
-  color: #ff6f00; 
+  color: #ffbb00; 
 }
 
 #github-icon:hover {

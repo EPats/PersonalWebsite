@@ -8,7 +8,7 @@
   overflow: hidden;
 }
 
-#blob {
+#iblob {
   background-color: white;
   height: 50vmin;
   aspect-ratio: 8/9;
@@ -19,13 +19,77 @@
   rotate: -22deg;
   border-radius: 50%;
   background: linear-gradient(
-    to right, blue, white);
+    to right, blue, rgb(255, 244, 174));
   animation: rotate 20s infinite linear,
              scale 13s infinite linear,
              mutate 7s infinite ease-in-out;
   z-index: -2;
-  filter: blur(220px);
+  /* filter: blur(220px); */
 }
+
+.blob {
+  --blob-color-1: #ffbb00;
+  --blob-color-2: red;
+  --blob-grad-direction: right;
+  height: 50vmin;
+  aspect-ratio: 8/9;
+  position: absolute;
+  left: 0%;
+  top: -30%;
+  rotate: -22deg;
+  border-radius: 50%;
+  background: linear-gradient(
+    to var(--blob-grad-direction), var(--blob-color-1), var(--blob-color-2));
+  z-index: -2;
+  animation: rotate 13s infinite linear,
+             scale 19s infinite linear,
+             mutate 12s infinite ease-in-out,
+             moveVertical 10s infinite linear,
+             moveHorizontal 17s infinite ease-in-out;
+  /* z-index: -2; */
+}
+
+#blob2 {
+  --blob-color-1: #74f4a7;
+  --blob-color-2: rgb(0, 169, 23);
+  /* background: linear-gradient(
+    to right, #ffbb00, red); */
+  /* animation: rotate 13s infinite linear,
+             scale 19s infinite linear,
+             mutate 12s infinite ease-in-out,
+             moveVertical 10s infinite linear,
+             moveHorizontal 17s infinite ease-in-out;
+  z-index: -2; */
+  /* filter: blur(220px); */
+}
+
+
+#blob3 {
+  --blob-color-1: #74f4a7;
+  --blob-color-2: rgb(0, 169, 23);
+  /* background-color: white;
+  height: 50vmin;
+  aspect-ratio: 8/9;
+  position: absolute;
+  left: 0%;
+  top: -30%;
+  rotate: -22deg;
+  border-radius: 50%;
+  background: linear-gradient(
+    to right, #0c7500, rgb(0, 255, 47)); */
+  animation: rotate 13s infinite linear,
+             scale 19s infinite linear,
+             mutate 12s infinite ease-in-out,
+             moveVertical 3s infinite linear,
+             moveHorizontal 7s infinite ease-in-out;
+  /* z-index: -2; */
+  /* filter: blur(220px); */
+}
+
+#background-effects {
+  filter: blur(160px);
+}
+
 
 .polaroid-group {
   position: absolute;
@@ -117,4 +181,14 @@ figure::after {
 @keyframes mutate {
   0%, 100% { aspect-ratio: 8/9; }
   50% { aspect-ratio: 9/8; }
+}
+
+@keyframes moveVertical {
+  0% { top: -30%;}
+  100% { top: 100%;}
+}
+
+@keyframes moveHorizontal {
+  0% { left: -30%;}
+  100% { left: 100%;}
 }
