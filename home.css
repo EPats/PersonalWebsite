@@ -6,6 +6,7 @@
   height: 100%;
   z-index: 1;
   overflow: hidden;
+  filter: blur(160px);
 }
 
 #iblob {
@@ -85,11 +86,6 @@
   /* z-index: -2; */
   /* filter: blur(220px); */
 }
-
-#background-effects {
-  filter: blur(160px);
-}
-
 
 .polaroid-group {
   position: absolute;
