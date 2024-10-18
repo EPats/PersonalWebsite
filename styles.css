@@ -32,7 +32,15 @@ header, footer {
   /* backdrop-filter: blur(10px); */
 }
 
-header {
+#header-top{
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+#header-main {
   padding: 1rem;
   display: flex;
   justify-content: space-between;
