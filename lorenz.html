@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lorenz Attractor</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="lorenz.css">
+</head>
+<body>
+    <h1>Lorenz Attractor Visualization</h1>
+    <canvas id="lorenzCanvas"></canvas>
+
+    <div class="slider-container">
+        <label>σ: <input type="range" min="0" max="20" value="10" step="0.1" id="sigmaSlider"></label>
+        <label>ρ: <input type="range" min="0" max="50" value="28" step="0.1" id="rhoSlider"></label>
+        <label>β: <input type="range" min="0" max="10" value="8" step="0.1" id="betaSlider"></label>
+    </div>
+
+    <button class="restart-button">Restart Animation</button>
+    <script src="lorenz.js"></script>
+</body>
+</html>
