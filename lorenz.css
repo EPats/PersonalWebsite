@@ -39,3 +39,77 @@ canvas {
     font-size: 16px;
     cursor: pointer;
 }
+
+.controls-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+  }
+  
+  label {
+    font-weight: bold;
+    white-space: nowrap;
+    font-size: 0.9em;
+  }
+  
+  input[type="range"] {
+    width: 150px;
+  }
+  
+  input[type="color"] {
+    vertical-align: middle;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .color-picker-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  #colorPicker:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  
+input[type="range"] {
+    width: 40px;  /* Reduced from 150px */
+    height: 10px;  /* Added to reduce height */
+    -webkit-appearance: none;  /* Removes default styling */
+    background: #d3d3d3;
+    outline: none;
+    border-radius: 5px;
+  }
+  
+  /* Styling for the slider thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #4CAF50;
+    cursor: pointer;
+    border-radius: 50%;
+  }

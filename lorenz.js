@@ -10,28 +10,32 @@ const canvas = document.getElementById('lorenzCanvas');
     resizeCanvas();
 
     let [x, y, z] = [0.01, 0, 0];
-    let [sigma, rho, beta] = [10, 28, 8/3];
+    const parameters = {
+      sigma: 10,
+      rho: 28,
+      beta: 8 / 3
+    };
 
     const points = [];
     let criticalPoints = [];
-    let [rotationX, rotationY, rotationZ] = [0, 0, 0];
+    let [rotationX, rotationY] = [Math.PI / 10, Math.PI / 4];
     let [mouseX, mouseY] = [0, 0];
     let hue = 0;
 
     ['sigma', 'rho', 'beta'].forEach((param, i) => {
         const slider = document.getElementById(`${param}Slider`);
-        slider.onchange = () => {
-            [sigma, rho, beta][i] = parseFloat(slider.value);
-            updateCriticalPoints;
+        slider.oninput = () => {
+            parameters[param] = parseFloat(slider.value);
+            updateCriticalPoints();
         }
     });
 
     function updateCriticalPoints() {
-        rho_minus1 = rho - 1
-        discriminant = Math.sqrt(beta * rho_minus1)
+        rho_minus1 = parameters['rho'] - 1
+        discriminant = Math.sqrt(parameters['beta'] * rho_minus1)
       criticalPoints = [
-        { x: discriminant, y: discriminant, z: rho - 1 },
-        { x: -discriminant, y: -discriminant, z: rho - 1 },
+        { x: discriminant, y: discriminant, z: rho_minus1 },
+        { x: -discriminant, y: -discriminant, z: rho_minus1 },
         { x: 0, y: 0, z: 0 }
       ];
     }
@@ -39,11 +43,10 @@ const canvas = document.getElementById('lorenzCanvas');
     function rotatePoint(point) {
         const [cosX, sinX] = [Math.cos(rotationX), Math.sin(rotationX)];
         const [cosY, sinY] = [Math.cos(rotationY), Math.sin(rotationY)];
-        const [cosZ, sinZ] = [Math.cos(rotationZ), Math.sin(rotationZ)];
   
-        const rotatedX = point.x * (cosY * cosZ) + point.y * (cosY * sinZ) - point.z * sinY;
-        const rotatedY = point.x * (cosZ * sinX * sinY - cosX * sinZ) + point.y * (cosX * cosZ + sinX * sinY * sinZ) + point.z * (cosY * sinX);
-        const rotatedZ = point.x * (cosX * cosZ * sinY + sinX * sinZ) + point.y * (cosX * sinY * sinZ - cosZ * sinX) + point.z * (cosX * cosY);
+        const rotatedX = point.x * cosY - point.z * sinY;
+        const rotatedY = point.x * sinX * sinY + point.y * cosX + point.z * (cosY * sinX);
+        const rotatedZ = point.x * cosX * sinY - point.y * sinX + point.z * (cosX * cosY);
   
         return { x: rotatedX, y: rotatedY, z: rotatedZ };
     }
@@ -125,9 +128,9 @@ const canvas = document.getElementById('lorenzCanvas');
 
     function animate() {
       const dt = 0.01;
-      const dx = (sigma * (y - x)) * dt;
-      const dy = (x * (rho - z) - y) * dt;
-      const dz = (x * y - beta * z) * dt;
+      const dx = (parameters['sigma'] * (y - x)) * dt;
+      const dy = (x * (parameters['rho'] - z) - y) * dt;
+      const dz = (x * y - parameters['beta'] * z) * dt;
 
       x += dx;
       y += dy;
@@ -145,8 +148,11 @@ const canvas = document.getElementById('lorenzCanvas');
       context.translate(canvas.width/2, canvas.height/2);
 
       // Update rotation based on mouse position
-      rotationX = -(mouseY / canvas.height - 0.5) * Math.PI;
-      rotationY = -(mouseX / canvas.width - 0.5) * Math.PI;
+      const dRotationX = (mouseY / canvas.height - 0.5) * Math.PI;
+      const dRotationY = (mouseX / canvas.width - 0.5) * Math.PI;
+      rotationX = Math.PI / 10 + dRotationX * 0.15
+      rotationY = Math.PI / 4 + dRotationY * 0.15
+
 
       drawAxes();
       drawCriticalPoints();
@@ -169,3 +175,8 @@ const canvas = document.getElementById('lorenzCanvas');
 
     updateCriticalPoints();
     animate();
+
+    document.getElementById('disableColorPicker').addEventListener('change', function() {
+      const colorPicker = document.getElementById('colorPicker');
+      colorPicker.disabled = !this.checked;
+    });
