@@ -1,5 +1,5 @@
 :root {
-  --bg: rgb(0, 4, 20);
+  --bg: rgb(4, 9, 30);
   --text-color: #fff;
   --header-bg: rgba(0, 0, 20, 0.5);
   --footer-bg: rgba(0, 0, 20, 0.5);
@@ -226,6 +226,7 @@ main {
 footer {
   padding: 1rem;
   text-align: center;
+  margin-top: auto;
 }
 
 .social-icons {

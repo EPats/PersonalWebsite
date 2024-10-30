@@ -113,3 +113,62 @@ input[type="range"] {
     cursor: pointer;
     border-radius: 50%;
   }
+
+
+  .controls-wrapper {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+
+  
+  .control-group {
+    margin-bottom: 10px;
+  }
+  
+  .control-group label {
+    display: inline-block;
+    min-width: 100px;
+  }
+  
+  .control-group input[type="range"] {
+    width: 200px;
+    vertical-align: middle;
+  }
+  
+  .remove-controls {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .add-controls-btn {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .add-controls-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .controls-counter {
+    margin-top: 10px;
+    color: #666;
+    font-size: 0.9em;
+  }

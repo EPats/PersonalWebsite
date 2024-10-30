@@ -23,7 +23,7 @@ const canvas = document.getElementById('lorenzCanvas');
     let hue = 0;
 
     ['sigma', 'rho', 'beta'].forEach((param, i) => {
-        const slider = document.getElementById(`${param}Slider`);
+        const slider = document.getElementById(`${param}Slider-0`);
         slider.oninput = () => {
             parameters[param] = parseFloat(slider.value);
             updateCriticalPoints();
@@ -180,3 +180,81 @@ const canvas = document.getElementById('lorenzCanvas');
       const colorPicker = document.getElementById('colorPicker');
       colorPicker.disabled = !this.checked;
     });
+
+
+    // Additional Controls
+
+    let controlsCount = 1;
+const MAX_CONTROLS = 6;
+
+function createNewControls() {
+  const id = controlsCount;
+  const container = document.createElement('div');
+  container.className = 'controls-container';
+  
+  container.innerHTML = `
+    <button class="remove-controls" onclick="removeControls(this)">×</button>
+    <div class="control-group">
+      <label for="sigmaSlider-${id}">σ: <span id="sigmaValue-${id}">10</span></label>
+      <input type="range" min="0" max="20" value="10" step="0.1" id="sigmaSlider-${id}">
+    </div>
+    <div class="control-group">
+      <label for="rhoSlider-${id}">ρ: <span id="rhoValue-${id}">28</span></label>
+      <input type="range" min="0" max="50" value="28" step="0.1" id="rhoSlider-${id}">
+    </div>
+    <div class="control-group">
+      <label for="betaSlider-${id}">β: <span id="betaValue-${id}">8</span></label>
+      <input type="range" min="0" max="10" value="8" step="0.1" id="betaSlider-${id}">
+    </div>
+    <div class="control-group">
+      <label for="colorPicker-${id}">Color:</label>
+      <input type="color" value="#ff0000" id="colorPicker-${id}">
+    </div>
+    <div class="control-group">
+      <label class="checkbox-label">
+        <input type="checkbox" id="toggleCheckbox-${id}">
+        Enable Feature
+      </label>
+    </div>
+  `;
+
+  // Add the new controls before the add button
+  const addButton = document.getElementById('addControls');
+  addButton.parentNode.insertBefore(container, addButton);
+  
+  // Setup event listeners for the new sliders
+  setupSliderListener(`sigmaSlider-${id}`, `sigmaValue-${id}`);
+  setupSliderListener(`rhoSlider-${id}`, `rhoValue-${id}`);
+  setupSliderListener(`betaSlider-${id}`, `betaValue-${id}`);
+  
+  controlsCount++;
+  updateControlsCount();
+}
+
+function removeControls(button) {
+  button.parentElement.remove();
+  controlsCount--;
+  updateControlsCount();
+}
+
+function updateControlsCount() {
+  document.getElementById('controlsCount').textContent = controlsCount;
+  const addButton = document.getElementById('addControls');
+  addButton.disabled = controlsCount >= MAX_CONTROLS;
+}
+
+function setupSliderListener(sliderId, valueId) {
+  const slider = document.getElementById(sliderId);
+  const value = document.getElementById(valueId);
+  slider.addEventListener('input', () => {
+    value.textContent = slider.value;
+  });
+}
+
+// Setup initial slider listeners
+setupSliderListener('sigmaSlider-0', 'sigmaValue-0');
+setupSliderListener('rhoSlider-0', 'rhoValue-0');
+setupSliderListener('betaSlider-0', 'betaValue-0');
+
+// Add button event listener
+document.getElementById('addControls').addEventListener('click', createNewControls);

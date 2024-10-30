@@ -9,37 +9,43 @@
     <h1>Lorenz Attractor Visualization</h1>
     <canvas id="lorenzCanvas"></canvas>
 
-    <div class="controls-container">
-      <div class="control-group">
-        <label for="sigmaSlider">σ: <span id="sigmaValue">10</span></label>
-        <input type="range" min="0" max="20" value="10" step="0.1" id="sigmaSlider">
+    <div id="controlsWrapper" class="controls-wrapper">
+      <div class="controls-container">
+        <div class="control-group">
+          <label for="sigmaSlider-0">σ: <span id="sigmaValue-0">10</span></label>
+          <input type="range" min="0" max="20" value="10" step="0.1" id="sigmaSlider-0">
+        </div>
+        <div class="control-group">
+          <label for="rhoSlider-0">ρ: <span id="rhoValue-0">28</span></label>
+          <input type="range" min="0" max="50" value="28" step="0.1" id="rhoSlider-0">
+        </div>
+        <div class="control-group">
+          <label for="betaSlider-0">β: <span id="betaValue-0">8</span></label>
+          <input type="range" min="0" max="10" value="8" step="0.1" id="betaSlider-0">
+        </div>
+        <div class="control-group">
+          <label for="colorPicker-0">Color:</label>
+          <input type="color" value="#ff0000" id="colorPicker-0">
+        </div>
+        <div class="control-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="toggleCheckbox-0">
+            Enable Feature
+          </label>
+        </div>
       </div>
-      <div class="control-group">
-        <label for="rhoSlider">ρ: <span id="rhoValue">28</span></label>
-        <input type="range" min="0" max="50" value="28" step="0.1" id="rhoSlider">
-      </div>
-      <div class="control-group">
-        <label for="betaSlider">β: <span id="betaValue">8</span></label>
-        <input type="range" min="0" max="10" value="8" step="0.1" id="betaSlider">
-      </div>
-      <div class="control-group">
-        <label for="colorPicker">Color:</label>
-        <input type="color" value="#ff0000" id="colorPicker">
-      </div>
-      <div class="control-group">
-        <label class="checkbox-label">
-          <input type="checkbox" id="toggleCheckbox">
-          Enable Feature
-        </label>
-      </div>
+      <button id="addControls" class="add-controls-btn">Add New Controls</button>
+      <div class="controls-counter">Controls Sets: <span id="controlsCount">1</span>/6</div>
     </div>
+
+
     <div class="color-picker-toggle">
       <label class="checkbox-label">
         <input type="checkbox" id="disableColorPicker" checked>
         Enable Color Picker
       </label>
     </div>
-
+    
     <button class="restart-button">Restart Animation</button>
     <script src="lorenz.js"></script>
 </body>
