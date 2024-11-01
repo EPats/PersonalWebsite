@@ -1,3 +1,4 @@
+const bd = document.body;
 const canvas = document.getElementById('lorenzCanvas');
     const context = canvas.getContext('2d');
     const parameters = {
@@ -83,10 +84,17 @@ const canvas = document.getElementById('lorenzCanvas');
             context.stroke();
         });
         hue += 0.1 * hueDirection;
+
+        let colorUB = 60;
+        let colorLB = 20;
+        if (bd.classList.contains('light-mode')) {
+          colorUB = 340;
+          colorLB = 300;
+        }
         
-        if (hue >= 60) {
+        if (hue >= colorUB) {
             hueDirection = -1;
-        } else if (hue <= 20) {
+        } else if (hue <= colorLB) {
             hueDirection = 1;
         }
 
@@ -112,13 +120,9 @@ const canvas = document.getElementById('lorenzCanvas');
     function drawAxes() {
         const axisLength = 100;
         
-        context.strokeStyle = '#FFFFFF';
+        context.strokeStyle = "white";
         drawAxis(axisLength, 0, 0); // x-axis
-
-        context.strokeStyle = '#BBBBBB';
         drawAxis(0, -axisLength, 0); // y-axis (inverted)
-
-        context.strokeStyle = '#888888';
         drawAxis(0, 0, axisLength); // z-axis
     }
 

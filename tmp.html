@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Light/Dark Mode Toggle</title>
+  <style>
+    /* General styles */
+
+    :root {
+        --bg: #f0f0f0;
+        --txt: #333;
+    }
+    body {
+      transition: background-color 0.3s, color 0.3s;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--txt);
+    }
+    
+    /* Light and Dark Mode */
+    .light-mode {
+        --bg: rgb(244, 239, 231);
+        --txt: #333;
+    }
+    .dark-mode {
+        --bg: #333;
+        --txt: #f0f0f0;
+    }
+
+    /* Toggle Container */
+    .toggle-container {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 50%;
+      background-color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    /* Icon Styles */
+    .toggle-icon {
+      font-size: 24px;
+      transition: transform 0.3s, color 0.3s;
+    }
+    
+    /* Dark Mode Icon and Background */
+    .dark-mode .toggle-container {
+      background-color: #555;
+    }
+    .dark-mode .toggle-icon {
+      color: #f9d71c;
+      transform: rotate(180deg);
+    }
+    .light-mode .toggle-icon {
+      color: #333;
+    }
+  </style>
+</head>
+<body class="light-mode">
+
+  <!-- Toggle Switch Container -->
+  <div class="toggle-container" id="toggleSwitch">
+    <!-- Day/Night Icon (Font Awesome) -->
+    <span class="toggle-icon" id="toggleIcon">☀️</span>
+  </div>
+
+  <script>
+    // Get the elements
+    const toggleSwitch = document.getElementById('toggleSwitch');
+    const toggleIcon = document.getElementById('toggleIcon');
+    const body = document.body;
+
+    // Toggle between light and dark mode
+    toggleSwitch.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      body.classList.toggle('light-mode');
+      
+      // Switch the icon
+      toggleIcon.textContent = body.classList.contains('dark-mode') ? '🌙' : '☀️';
+    });
+  </script>
+</body>
+</html>

@@ -19,3 +19,14 @@ window.onmousemove = (e) => {
   }
   
 };
+
+// Get the elements
+const toggleSwitch = document.getElementById('mode-toggle');
+console.log(toggleSwitch);
+const body = document.body;
+
+// Toggle between light and dark mode
+toggleSwitch.addEventListener('click', () => {
+  body.classList.toggle('light-mode');
+  body.classList.toggle('dark-mode');
+});
