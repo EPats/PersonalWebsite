@@ -1,14 +1,6 @@
 :root {
-  --bg: rgb(2, 6, 21);
-  --bg_light: rgb(8, 13, 32);
-  --text-color: #fff;
-  --header-bg: rgba(0, 0, 20, 0.5);
-  --footer-bg: rgba(0, 0, 20, 0.5);
-  --logo-color: rgb(252, 238, 223);
-  --iblob_1: rgb(20, 10, 234);
-  --iblob_2: rgb(238, 185, 62);
   --welcome-delay: 1.8s;
-  --transition-time: 0.5s;
+  --transition-time: 0.3s;
 }
 
 /* Light Mode*/
@@ -21,6 +13,13 @@
   --logo-color: rgb(11, 4, 50);
   --iblob_1: rgb(248, 158, 55);
   --iblob_2: rgb(211, 44, 186);
+  --welcome-container-color: rgba(255, 152, 73, 0.15);
+  --welcome-text-highlight: rgb(255, 98, 177);
+  --welcome-text-fade: rgb(255, 141, 115);
+  --welcome-text-tagline: rgb(34, 8, 63);
+  --shimmer-color: rgba(255, 176, 214, 0.5);
+  --flow-start: 70%;
+  --flow-end: 100%;
 }
 
 .dark-mode {
@@ -32,6 +31,13 @@
   --logo-color: rgb(252, 238, 223);
   --iblob_1: rgb(20, 10, 234);
   --iblob_2: rgb(238, 185, 62);
+  --welcome-container-color: rgba(121, 94, 255, 0.1);
+  --welcome-text-highlight: rgb(124, 178, 246);
+  --welcome-text-fade: rgb(152, 115, 255);
+  --welcome-text-tagline: rgb(203, 213, 225);
+  --shimmer-color: rgba(244, 249, 255, 0.5);
+  --flow-start: 0%;
+  --flow-end: 30%;
 }
 
 .gradient-layer {
@@ -201,7 +207,7 @@ header, footer {
   width: 50px;
   fill: none;
   stroke: none;
-
+  transition: fill var(--transition-time) ease;
 }
 
 #header-bar {
@@ -209,6 +215,7 @@ header, footer {
   width: auto;
   fill: var(--logo-color);
   stroke: var(--logo-color);
+  transition: fill var(--transition-time) ease, stroke var(--transition-time) ease;
   padding-left: 10px;
   transform-origin: center;
   animation: growSvg 0.5s ease-out forwards;
@@ -230,10 +237,12 @@ header, footer {
   width: auto;
   fill: var(--logo-color);
   stroke: none;
+  transition: fill var(--transition-time) ease, stroke var(--transition-time) ease;
 }
 
 #header-logo path {
   stroke: var(--logo-color);
+  transition: stroke var(--transition-time) ease;
   stroke-width: 2;
   stroke-dasharray: 4500;
   stroke-dashoffset: 4500;
@@ -269,6 +278,7 @@ nav ul li:first-child { margin-left: 0; }
 
 nav ul li a {
   color: var(--text-color);
+  /* transition: color var(--transition-time) ease; */
   text-decoration: none;
 }
 
@@ -277,6 +287,7 @@ footer {
   padding: 1rem;
   text-align: center;
   margin-top: auto;
+  /* transition: color var(--transition-time) ease; */
 }
 
 .social-icons {
@@ -288,7 +299,7 @@ footer {
 .social-icons a {
   color: var(--text-color);
   text-decoration: none;
-  transition: color 0.3s ease;
+  /* transition: color var(--transition-time) ease; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -348,7 +359,7 @@ main {
 Welcome
 */
 .welcome-container {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--welcome-container-color);
   backdrop-filter: blur(10px);
   border-radius: 24px;
   padding: 3rem;
@@ -392,7 +403,13 @@ Welcome
   display: inline-block;
   position: relative;
   color: transparent;
-  background: linear-gradient(120deg, #81caff, #9873ff);
+  /* background: linear-gradient(120deg, var(--welcome-text-highlight), var(--welcome-text-fade)); */
+  background: linear-gradient(120deg,  rgb(124, 178, 246), rgb(152, 115, 255), rgb(255, 98, 177), rgb(255, 141, 115));
+  /* --welcome-text-highlight: rgb(255, 98, 177); */
+  /* --welcome-text-fade: rgb(255, 141, 115); */
+  /* --welcome-text-highlight: rgb(124, 178, 246); */
+  /* --welcome-text-fade: rgb(152, 115, 255); */
+  background-size: 400% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   animation: gradientFlow 4s linear infinite;
@@ -405,21 +422,23 @@ Welcome
   bottom: 0.2rem;
   width: 100%;
   height: 3px;
-  background: linear-gradient(120deg, #68b4ea, #5b34c7);
+  background: linear-gradient(120deg,  rgb(124, 178, 246), rgb(152, 115, 255), rgb(255, 98, 177), rgb(255, 141, 115));
+  background-size: 400% 100%;
   transform: scaleX(0);
   transform-origin: left;
-  animation: underlineExpand 0.8s forwards;
-  animation-delay: calc(0.35s + var(--welcome-delay));
+  animation: gradientFlow 4s linear infinite, underlineExpand 0.8s forwards;
+  animation-delay: 0s, calc(0.35s + var(--welcome-delay));
 }
 
 .name:hover {
-  animation: shimmer 2.5s forwards;
+  animation: gradientFlow 4s linear infinite, shimmer 2.5s forwards;
 }
 
 
 .title {
   font-size: 1.75rem;
-  color: #7cb2f6;
+  color: var(--welcome-text-highlight);
+  /* transition: color var(--transition-time) ease; */
   margin-top: -1rem;
   margin-bottom: 1rem;
   animation-delay: calc(1.5s + var(--welcome-delay));
@@ -428,14 +447,15 @@ Welcome
 .tagline {
   font-size: 1.25rem;
   line-height: 1.6;
-  color: #cbd5e1;
+  color: var(--welcome-text-tagline);
+  /* transition: color var(--transition-time) ease; */
   animation-delay: calc(2.5s + var(--welcome-delay));
 }
 
 .decorative-line {
   height: 2px;
   width: 25rem;
-  background: #60a5fa;
+  background: var(--welcome-text-highlight);
   margin-top: 0;
   margin-left: auto;
   margin-right: auto;
@@ -478,13 +498,13 @@ Welcome
 
 @keyframes gradientFlow {
   0% {
-      background-position: 0% 50%;
+      background-position-x: var(--flow-start);
   }
   50% {
-      background-position: 100% 50%;
+      background-position-x: var(--flow-end);
   }
   100% {
-      background-position: 0% 50%;
+      background-position-x: var(--flow-start);
   }
 }
 
@@ -493,7 +513,7 @@ Welcome
       text-shadow: none;
   }
   25% {
-      text-shadow: 0 0 8px rgba(244, 249, 255, 0.5);
+      text-shadow: 0 0 8px var(--shimmer-color);
   }
   100% {
       text-shadow: none;

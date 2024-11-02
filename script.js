@@ -1,4 +1,19 @@
 const blob = document.getElementById("iblob");
+const toggleSwitch = document.getElementById('mode-toggle');
+const body = document.body;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  setTheme(savedTheme);
+  
+if (toggleSwitch) {
+      toggleSwitch.checked = savedTheme === 'dark';
+  }
+});
+
+toggleSwitch.onclick = (e) => {
+  setTheme(body.classList.contains('dark-mode') ? 'light' : 'dark');
+}
 
 window.onmousemove = (e) => {
   
@@ -20,13 +35,14 @@ window.onmousemove = (e) => {
   
 };
 
-// Get the elements
-const toggleSwitch = document.getElementById('mode-toggle');
-console.log(toggleSwitch);
-const body = document.body;
-
-// Toggle between light and dark mode
-toggleSwitch.addEventListener('click', () => {
-  body.classList.toggle('light-mode');
-  body.classList.toggle('dark-mode');
-});
+function setTheme(theme) {
+  if (theme === 'light') {
+      body.classList.add('light-mode');
+      body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+  } else {
+      body.classList.add('dark-mode');
+      body.classList.remove('light-mode');
+      localStorage.setItem('theme', 'dark');
+  }
+}

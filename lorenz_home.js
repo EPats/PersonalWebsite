@@ -1,4 +1,4 @@
-const bd = document.body;
+// const bd = document.body;
 const canvas = document.getElementById('lorenzCanvas');
     const context = canvas.getContext('2d');
     const parameters = {
@@ -84,20 +84,7 @@ const canvas = document.getElementById('lorenzCanvas');
             context.stroke();
         });
         hue += 0.1 * hueDirection;
-
-        let colorUB = 60;
-        let colorLB = 20;
-        if (bd.classList.contains('light-mode')) {
-          colorUB = 340;
-          colorLB = 300;
-        }
-        
-        if (hue >= colorUB) {
-            hueDirection = -1;
-        } else if (hue <= colorLB) {
-            hueDirection = 1;
-        }
-
+        hue %= 360;
     }
 
     function drawDot(point) {
@@ -121,9 +108,9 @@ const canvas = document.getElementById('lorenzCanvas');
         const axisLength = 100;
         
         context.strokeStyle = "white";
-        drawAxis(axisLength, 0, 0); // x-axis
-        drawAxis(0, -axisLength, 0); // y-axis (inverted)
-        drawAxis(0, 0, axisLength); // z-axis
+        drawAxis(axisLength, 0, 0);
+        drawAxis(0, -axisLength, 0);
+        drawAxis(0, 0, axisLength);
     }
 
     function updateCriticalPoints() {
